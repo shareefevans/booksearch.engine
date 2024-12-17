@@ -2,12 +2,15 @@ import type { Request } from 'express';
 import jwt from 'jsonwebtoken';
 import { GraphQLError } from 'graphql';
 import dotenv from 'dotenv';
-dotenv.config();
+import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
+console.log('Loaded JWT_SECRET_KEY:', process.env.JWT_SECRET_KEY);
 
 interface JwtPayload {
   _id: unknown;
   username: string;
-  email: string,
+  email: string;
 }
 
 export const authenticateToken = ({ req }: { req: Request }) => {
@@ -23,7 +26,9 @@ export const authenticateToken = ({ req }: { req: Request }) => {
   }
 
   try {
-    const { data }: any = jwt.verify(token, process.env.JWT_SECRET_KEY || '', { maxAge: '2hr' });
+    const { data }: any = jwt.verify(token, process.env.JWT_SECRET_KEY || '', {
+      maxAge: '2hr',
+    });
     req.user = data as JwtPayload;
   } catch (err) {
     console.log('Invalid token');
@@ -36,7 +41,7 @@ export const signToken = (username: string, email: string, _id: unknown) => {
   const payload = { username, email, _id };
   const secretKey: any = process.env.JWT_SECRET_KEY;
 
-  return jwt.sign({data: payload}, secretKey, { expiresIn: '2h' });
+  return jwt.sign({ data: payload }, secretKey, { expiresIn: '2h' });
 };
 
 export class AuthenticationError extends GraphQLError {
@@ -44,4 +49,4 @@ export class AuthenticationError extends GraphQLError {
     super(message, undefined, undefined, undefined, ['UNAUTHENTICATED']);
     Object.defineProperty(this, 'name', { value: 'AuthenticationError' });
   }
-};
+}
