@@ -1,6 +1,6 @@
 # booksearch.engine
 
-[![Nodemon Version](https://img.shields.io/npm/v/nodemon.svg)](https://www.npmjs.com/package/nodemon) [![Concurrently Version](https://img.shields.io/npm/v/concurrently.svg)](https://www.npmjs.com/package/concurrently) [![wait-on Version](https://img.shields.io/npm/v/wait-on.svg)](https://www.npmjs.com/package/wait-on)
+[![Concurrently Version](https://img.shields.io/npm/v/concurrently.svg)](https://www.npmjs.com/package/concurrently)
 
 ## 🚀 Description
 
@@ -32,16 +32,15 @@ This application allows users to create an account and search for books to add t
 ```
 git clone
 npm i (OR) npm install
-npm run start:dev
+npm run develop
 ```
 
 ## 👍 Usage
 
-1.
-2.
-3.
-4.
-5.
+1. once you have entered `npm run develop` the application will open
+2. you are then able to search for books directly in the searchbar or login/signup
+3. if you are signed in you are also able to save books in a `your books` section after searching for them
+4. in `your books` you are also able to delete books that you have saved
 
 ## ➕ Contributing
 
@@ -49,10 +48,14 @@ npm run start:dev
 
 ## ✅ Tests
 
-- Open application
-- Input `San Diego`
-- Click search
-- Weather data should display over a 5 day period
+- Open application using `npm run develop` from the `main` folder
+- click `signup` in the top right corner of the application
+- enter in a dummy email and password like: `test@gmail.com` and `Password123`
+- once created, make sure you have logged in
+- once logged in search `starwars` in the searchbar
+- save the first starwars book to your list
+- once saved, click `your books` to view the book in your collection
+- if you wish to remove the book from your collection, click delete from `your books`
 
 ## ❓ Questions
 
